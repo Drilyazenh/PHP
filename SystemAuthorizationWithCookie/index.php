@@ -1,5 +1,5 @@
 <?php
-$dataBase = require __DIR__.'/DB.php';
+$dataBase = require __DIR__ . '/DB.php';
 $login = $_COOKIE['login'];
 for ($i = 0;$i<count($dataBase);$i++) {
     if ($dataBase[$i]['login'] == $login) {
