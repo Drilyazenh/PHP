@@ -2,8 +2,34 @@
 $is_auth = (bool) rand(0, 1);
 $user_name = 'ilya';
 $user_avatar = 'img/user.jpg';
+$cookArr=[];
 
 $pageName = 'Главная';
+
+$name = "history";
+$value="";
+$expire = strtotime("+30 days");
+$path = "/";
+//Set ID
+$id = null;
+//Cookies for history and get ID for lot
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    if(empty($_COOKIE["history"])){
+        $value .= $id . " ";
+    }
+    if(!empty($_COOKIE["history"]) && strpos($_COOKIE["history"],$id. " ")===false){
+    $value .= $id . " ";
+};
+};
+if (isset($_COOKIE["history"])) {
+
+        $value .=$_COOKIE["history"];
+
+}
+setcookie($name,$value, $expire, $path);
+
+
 
 $categories = ["Доски и лыжи","Крепления","Ботинки","Одежда","Инструменты","Разное"];
 $adArr = [

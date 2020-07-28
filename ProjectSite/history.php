@@ -2,14 +2,12 @@
 require_once('functions.php');
 require_once ('data.php');
 
+$historyIdArr = explode(" ",trim($value));
 
+$content_main = render_template('templates\history.php', [
 
-
-
-$content_main = render_template('templates\lot.php', [
-    'adArr' => $adArr,
-    'id' => $id,
-
+    'historyIdArr'=>$historyIdArr,
+    'adArr'=>$adArr
 
 ]);
 
@@ -23,5 +21,3 @@ $layout = render_template('templates\layout.php', [
 ]);
 print ($layout);
 ?>
-
-
