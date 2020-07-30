@@ -1,6 +1,6 @@
 <?php ?>
 <form class="form form--add-lot container form--invalid" action="add.php" method="post"> <!-- form--invalid -->
-    <h2>Добавление лота <?= print_r($_FILES) ?></h2>
+    <h2>Добавление лота</h2>
     <div class="form__container-two">
       <div class="form__item <?= $error ?>"> <!-- form__item--invalid -->
         <label for="lot-name">Наименование</label>

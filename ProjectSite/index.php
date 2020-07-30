@@ -11,6 +11,7 @@ $layout = render_template('templates\layout.php', [
 'user_avatar'=>$user_avatar,
 'pageName'=>$pageName,
 'categories'=>$categories,
+'hideBlock'=>$hideBlock,
 'content_main'=>$content_main
 ]);
 print ($layout);

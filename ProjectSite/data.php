@@ -1,6 +1,20 @@
 <?php
-$is_auth = (bool) rand(0, 1);
-$user_name = 'ilya';
+
+$user_name = '';
+$hideBlock = "visually-hidden";
+
+if (isset($_COOKIE['name'])) {
+    $is_auth = true;
+    $user_name = $_COOKIE['name'];
+    $hideBlock ="";
+}
+else {
+
+    $is_auth = false;
+}
+
+
+
 $user_avatar = 'img/user.jpg';
 $cookArr=[];
 
