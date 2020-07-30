@@ -1,5 +1,9 @@
 <?php
 
+require_once ('functions.php');
+require_once ('init.php');
+require_once ('mysql_helper.php');
+
 $user_name = '';
 $hideBlock = "visually-hidden";
 
@@ -42,6 +46,8 @@ if (isset($_COOKIE["history"])) {
 
 }
 setcookie($name,$value, $expire, $path);
+
+
 
 
 
