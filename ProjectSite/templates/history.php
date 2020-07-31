@@ -1,24 +1,39 @@
-<?php
-require_once('functions.php');
-require_once ('data.php');
+<?php ?>
+<div class="container">
+    <section class="lots">
+        <h2>История просмотров</h2>
+        <ul class="lots__list">
 
-$historyIdArr = explode(" ",trim($value));
 
-$content_main = render_template('templates\history.php', [
+            <?php foreach ($historyIdArr as $i){ if($i==""){break;} ?>
+                <li class="lots__item lot">
+                    <div class="lot__image">
+                        <img src=<?= $adArr[$i]['path'] ?> width="350" height="260" alt="Сноуборд">
+                    </div>
+                    <div class="lot__info">
+                        <span class="lot__category"><?= $adArr[$i]['category'] ?></span>
+                        <h3 class="lot__title"><a class="text-link" href="lot.php?id=<?=$i;?>"><?= htmlspecialchars($adArr[$i]['title']) ?></a></h3>
+                        <div class="lot__state">
+                            <div class="lot__rate">
+                                <span class="lot__amount">Стартовая цена</span>
+                                <span class="lot__cost"><?= formatingPrice($adArr[$i]['price'])."<b class=rub>р</b>" ?></span>
+                            </div>
+                            <div class="lot__timer timer">
+                                <?= liveLots() ?>
 
-    'historyIdArr'=>$historyIdArr,
-    'adArr'=>$adArr
-
-]);
-
-$layout = render_template('templates\layout.php', [
-    'is_auth'=>$is_auth,
-    'user_name'=>$user_name,
-    'user_avatar'=>$user_avatar,
-    'pageName'=>$pageName,
-    'categories'=>$categories,
-    'hideBlock'=>$hideBlock,
-    'content_main'=>$content_main
-]);
-print ($layout);
-?>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+    </section>
+    <ul class="pagination-list">
+        <li class="pagination-item pagination-item-prev"><a>Назад</a></li>
+        <li class="pagination-item pagination-item-active"><a>1</a></li>
+        <li class="pagination-item"><a href="#">2</a></li>
+        <li class="pagination-item"><a href="#">3</a></li>
+        <li class="pagination-item"><a href="#">4</a></li>
+        <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
+    </ul>
+</div>

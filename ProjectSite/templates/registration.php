@@ -1,62 +1,20 @@
-<?php
-require_once ('data.php');
-require_once ('functions.php');
-require_once ('init.php');
-require_once ('mysql_helper.php');
-
-$error=false;
-
-if (!$link) {
-    $error = mysqli_connect_error();
-    print ("Ошибка");
-} else{
-    $sql = 'SELECT * FROM users';
-    $result = mysqli_query($link, $sql);
-    if ($result) {
-        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
-    else {
-        print ("Ошибка");
-        mysqli_error($link);
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $form = $_POST;
-
-    foreach ($users as $user){
-        if(($user['email'] === $form['email'])){
-            $error = true;
-            break;
-
-        }
-    }
-    if($error == true){
-        $error = 'Такой e-mail уже существует';
-    } else {
-
-        $sql = 'INSERT INTO users (name,email,password) VALUES (?,?,?)';
-        $stmt = db_get_prepare_stmt($link, $sql, [$form['name'], $form['email'], $form['password']]);
-        $res = mysqli_stmt_execute($stmt);
-        $error = "Регистрация прошла успешно";
-
-    }
-
-}
-$content_main = render_template('templates\registration.php', [
-    'error'=>$error
-
-]);
-
-
-$layout = render_template('templates\layout.php', [
-    'is_auth'=>$is_auth,
-    'user_name'=>$user_name,
-    'user_avatar'=>$user_avatar,
-    'pageName'=>$pageName,
-    'categories'=>$categories,
-    'hideBlock'=>$hideBlock,
-    'content_main'=>$content_main
-]);
-print ($layout);
-?>
+<form class="form container" action="registration.php" method="post"> <!-- form--invalid -->
+    <h2> Регистрация </h2>
+    <div class="form__item">
+    <label for="name">Имя*</label>
+    <input id="name" type="text" name="name" placeholder="Ваше Имя" required>
+    <span class="form__error">Ваше Имя</span>
+    </div>
+    <div class="form__item"> <!-- form__item--invalid -->
+        <label for="email">E-mail*</label>
+        <input id="email" type="text" name="email" placeholder="Введите e-mail" required>
+        <p><?= $error ?></p>
+        <span class="form__error">Введите e-mail</span>
+    </div>
+    <div class="form__item form__item--last">
+        <label for="password">Пароль*</label>
+        <input id="password" type="text" name="password" placeholder="Введите пароль" required>
+        <span class="form__error">Введите пароль</span>
+    </div>
+    <button type="submit" class="button">Зарегистрироваться</button>
+</form>
