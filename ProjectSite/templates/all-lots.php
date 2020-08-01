@@ -1,21 +1,6 @@
-<?php ?>
-<section class="promo">
-        <h2 class="promo__title">Нужен стафф для катки?</h2>
-        <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
-        <ul class="promo__list">
-
-            <?php for($i=0;$i<count($categories);$i++): ?>
-            <li class="promo__item promo__item--<?= $categoriesClass[$i] ?>">
-                <a class="promo__link" href="all-lots.php?categories=<?=$categories[$i] ?>"><?= $categories[$i] ?></a>
-            </li>
-            <?php endfor;?>
-
-        </ul>
-    </section>
+<div class="container">
     <section class="lots">
-        <div class="lots__header">
-            <h2>Открытые лоты</h2>
-        </div>
+        <h2>Все лоты в категории <span>«<?= $category ?>»</span></h2>
         <ul class="lots__list">
             <?php for($i=0;$i<count($adArr);$i++){ ?>
                 <li class="lots__item lot">
@@ -40,3 +25,12 @@
             <?php } ?>
         </ul>
     </section>
+    <ul class="pagination-list">
+        <li class="pagination-item pagination-item-prev"><a>Назад</a></li>
+        <li class="pagination-item pagination-item-active"><a>1</a></li>
+        <li class="pagination-item"><a href="#">2</a></li>
+        <li class="pagination-item"><a href="#">3</a></li>
+        <li class="pagination-item"><a href="#">4</a></li>
+        <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
+    </ul>
+</div>

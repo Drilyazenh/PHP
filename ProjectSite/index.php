@@ -6,6 +6,8 @@ require_once ('mysql_helper.php');
 
 $content_main = render_template('templates\index.php', [
     'adArr' => $adArr,
+    'categories'=>$categories,
+    'categoriesClass'=>$categoriesClass
 
 ]);
 $layout = render_template('templates\layout.php', [
@@ -15,6 +17,7 @@ $layout = render_template('templates\layout.php', [
 'pageName'=>$pageName,
 'categories'=>$categories,
 'hideBlock'=>$hideBlock,
+'categoriesClass'=>$categoriesClass,
 'content_main'=>$content_main
 ]);
 print ($layout);

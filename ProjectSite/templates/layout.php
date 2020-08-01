@@ -55,11 +55,11 @@
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <?php foreach ($categories as $value): ?>
+            <?php for($i=0;$i<count($categories);$i++): ?>
                 <li class="nav__item">
-                    <a href="all-lots.html"><?= $value ?></a>
+                    <a href="all-lots.php?categories=<?=$categories[$i] ?>"><?=$categories[$i]?></a>
                 </li>
-            <?php endforeach;?>
+            <?php endfor;?>
 
         </ul>
     </nav>
